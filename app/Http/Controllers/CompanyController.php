@@ -12,7 +12,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('companies.index',[
+            'companies' => Company::paginate()
+        ]);
     }
 
     /**
@@ -20,7 +23,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -28,7 +31,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('on company create');
     }
 
     /**
@@ -44,7 +47,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit');
     }
 
     /**
@@ -52,7 +55,7 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        dd('on compay update');
     }
 
     /**
@@ -60,6 +63,6 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        dd('on company delete');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AiapplicationController;
@@ -193,3 +194,6 @@ Route::prefix('cryptocurrency')->group(function () {
         Route::get('/wallet', 'wallet')->name('wallet');
     });
 });
+
+
+Route::resource('companies',CompanyController::class);

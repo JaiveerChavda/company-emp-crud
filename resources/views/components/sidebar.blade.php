@@ -51,9 +51,9 @@
             </li> --}}
             {{-- <li class="sidebar-menu-group-title">Application</li> --}}
             <li>
-                  <a href="{{ route('email') }}">
+                  <a href="{{ route('companies.index') }}">
                     <iconify-icon icon="mage:email" class="menu-icon"></iconify-icon>
-                    <span>Email</span>
+                    <span>Company</span>
                 </a>
             </li>
             {{-- <li>
