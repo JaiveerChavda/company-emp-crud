@@ -33,4 +33,11 @@
     <link rel="stylesheet"  href="{{ asset('assets/css/lib/audioplayer.css') }}">
     <!-- main css -->
     <link rel="stylesheet"  href="{{ asset('assets/css/style.css') }}">
+    <style>
+        .message-alert{
+            position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+        }
+    </style>
 </head>

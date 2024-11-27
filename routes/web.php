@@ -196,4 +196,12 @@ Route::prefix('cryptocurrency')->group(function () {
 });
 
 
-Route::resource('companies',CompanyController::class);
+Route::group(['middleware' => 'auth'],function (){
+    Route::resource('companies',CompanyController::class);
+    Route::post('logout',[AuthenticationController::class,'destroy']);
+});
+
+// session store
+Route::post('login',[AuthenticationController::class,'store'])->middleware('guest');
+
+Route::get('login',[AuthenticationController::class,'login'])->name('login')->middleware('guest');

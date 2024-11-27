@@ -30,10 +30,12 @@
 
     </main>
 
+    <x-flash/>
+
     <!-- ..::  scripts  start ::.. -->
     <x-script  script='{!! isset($script) ? $script : "" !!}' />
     <!-- ..::  scripts  end ::.. -->
-
+    @stack('scripts')
 </body>
 
 </html>

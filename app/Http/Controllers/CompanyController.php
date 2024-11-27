@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyStoreRequest;
+use App\Http\Requests\CompanyUpdateRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class CompanyController extends Controller
     {
         
         return view('companies.index',[
-            'companies' => Company::paginate()
+            'companies' => Company::latest()->paginate()
         ]);
     }
 
@@ -29,9 +31,19 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CompanyStoreRequest $request)
     {
-        dd('on company create');
+        //get validated data
+        $validated = $request->validated();
+
+        // handle image upload
+        $image = $request->file('logo')->store('companies-logo');
+        $validated['logo'] = $image;
+
+        // create new company
+        Company::query()->create($validated);
+
+        return redirect(route('companies.index'));
     }
 
     /**
@@ -47,15 +59,27 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('companies.edit');
+        return view('companies.edit',['company' => $company]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyUpdateRequest $request, Company $company)
     {
-        dd('on compay update');
+         //get validated data
+         $validated = $request->validated();
+
+        // handle image upload
+         if($request->has('logo')){
+            $image = $request->file('logo')->store('companies-logo');
+            $validated['logo'] = $image;
+         }
+       
+        // create new company
+        $company->update($validated);
+
+        return redirect(route('companies.index'));
     }
 
     /**
@@ -63,6 +87,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        dd('on company delete');
+        $company->delete();
+        return redirect(route('companies.index'));
     }
 }

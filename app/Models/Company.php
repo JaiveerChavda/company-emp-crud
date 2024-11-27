@@ -19,7 +19,7 @@ class Company extends Model
         return $this->hasMany(Employee::class);
     }
 
-    public function thumbnail(): Attribute
+    public function logo(): Attribute
     {
         return Attribute::make(
             get:function ($value) {

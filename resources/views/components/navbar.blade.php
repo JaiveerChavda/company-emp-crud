@@ -335,9 +335,15 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3" href="javascript:void(0)">
-                                    <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon> Log Out
-                                </a>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <div class="d-flex align-items-center">
+                                        <iconify-icon icon="lucide:power" class="me-8 icon text-xl"></iconify-icon>
+                                        <button type="submit">
+                                         Log Out
+                                        </button>
+                                    </div>                                   
+                                </form>
                             </li>
                         </ul>
                     </div>
