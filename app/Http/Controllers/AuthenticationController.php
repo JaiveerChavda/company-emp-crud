@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+
 
 class AuthenticationController extends Controller
 {
@@ -29,7 +31,10 @@ class AuthenticationController extends Controller
             return redirect(route('companies.index'))->with('success','Authentication was successfull');
         }
 
-        return redirect()->back()->with('error','Invalid Credentials');
+        throw ValidationException::withMessages([
+            'email' => 'Invalid Credentials',
+        ]);
+
         
     }
 
