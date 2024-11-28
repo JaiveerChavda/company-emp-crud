@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
 use App\Models\Company;
+use App\Models\Country;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,5 +24,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Company::factory(50)->create();
+
+        Country::factory(50)->create();
+
+        City::factory(50)->create();
     }
 }
