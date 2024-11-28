@@ -100,6 +100,8 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+
+        return redirect()->back()->with('success','Employee deleted successfully');
     }
 }
