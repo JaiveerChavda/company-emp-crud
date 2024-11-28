@@ -56,6 +56,12 @@
                     <span>Company</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('employees.index') }}">
+                  <iconify-icon icon="mage:email" class="menu-icon"></iconify-icon>
+                  <span>Employee</span>
+              </a>
+          </li>
             {{-- <li>
                 <a href="{{ route('chatMessage') }}">
                     <iconify-icon icon="bi:chat-dots" class="menu-icon"></iconify-icon>
