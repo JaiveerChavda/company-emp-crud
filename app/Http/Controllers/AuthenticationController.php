@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'email' => 'Invalid Credentials',
+            'email' => 'Invalid Credentials.Please try again with correct one.',
         ]);
 
         
