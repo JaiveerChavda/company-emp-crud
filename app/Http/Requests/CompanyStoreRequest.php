@@ -18,8 +18,8 @@ class CompanyStoreRequest extends FormRequest
             'name' => 'required|max:255|string|min:2',
             'email' => 'required|email|unique:companies,email',
             'logo' => 'nullable|image',
-            'country' => 'required|string|max:125',
-            'city' => 'required|string|max:125',
+            'country' => 'required|string|max:125|exists:countries,name',
+            'city' => 'required|string|max:125|exists:cities,name',
             'address' => 'required|string'
         ];
     }

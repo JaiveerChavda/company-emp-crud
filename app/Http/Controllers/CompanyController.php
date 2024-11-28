@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyStoreRequest;
 use App\Http\Requests\CompanyUpdateRequest;
+use App\Models\City;
 use App\Models\Company;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -25,7 +27,10 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('companies.create');
+        return view('companies.create',[
+            'countries' => Country::orderBy('name')->get('name'),
+            'cities' => City::orderBy('name')->get('name')
+        ]);
     }
 
     /**
@@ -37,13 +42,15 @@ class CompanyController extends Controller
         $validated = $request->validated();
 
         // handle image upload
-        $image = $request->file('logo')->store('companies-logo');
-        $validated['logo'] = $image;
+        if($request->has('logo')){
+            $image = $request->file('logo')->store('companies-logo');
+            $validated['logo'] = $image;
+        }
 
         // create new company
         Company::query()->create($validated);
 
-        return redirect(route('companies.index'));
+        return redirect(route('companies.index'))->with('success','Company created successfully');
     }
 
     /**

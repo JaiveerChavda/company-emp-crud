@@ -23,7 +23,7 @@ class Company extends Model
     {
         return Attribute::make(
             get:function ($value) {
-                if(is_string($value)){
+                if(isset($value) && is_string($value)){
 
                     if(filter_var($value, FILTER_VALIDATE_URL)){
                         return $value;
@@ -31,6 +31,9 @@ class Company extends Model
 
                     return Storage::disk('public')->url($value);
                 }
+
+                // return default in case of image is not set/uploaded
+                return 'https://via.placeholder.com/640x480.png/0055ff?text=consequatur';
             }
         );
     }

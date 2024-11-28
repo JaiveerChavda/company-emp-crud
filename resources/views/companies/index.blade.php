@@ -37,7 +37,7 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ $company->logo }}" alt="company logo" width="100" height="100" class="flex-shrink-0 me-12 radius-8 me-12">
+                                            <img src="{{ $company->logo }}" alt="company logo" width="50" height="50" class="flex-shrink-0 me-12 radius-8">
                                             <div class="flex-grow-1">
                                                 <h6 class="text-md mb-0 fw-normal">{{ $company->name }}</h6>
                                                 {{-- <span class="text-sm text-secondary-light fw-normal">Fashion</span> --}}
