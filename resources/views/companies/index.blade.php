@@ -13,7 +13,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title mb-0">Striped Rows</h5> 
+                    <h5 class="card-title mb-0">Company list</h5> 
                     <div>
                         {{-- <button type="button" >Primary</button> --}}
 
