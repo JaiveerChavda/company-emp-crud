@@ -15,7 +15,7 @@ class CompanyStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255|string|min:2',
+            'name' => 'required|max:255|string|min:3',
             'email' => 'required|email|unique:companies,email',
             'logo' => 'nullable|image',
             'country' => 'required|string|max:125|exists:countries,name',

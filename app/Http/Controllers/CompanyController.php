@@ -65,8 +65,12 @@ class CompanyController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Company $company)
-    {
-        return view('companies.edit',['company' => $company]);
+    {        
+        return view('companies.edit',[
+            'company' => $company,
+            'countries' => Country::orderBy('name')->get('name'),
+            'cities' => City::orderBy('name')->get('name')
+        ]);
     }
 
     /**
@@ -86,7 +90,7 @@ class CompanyController extends Controller
         // create new company
         $company->update($validated);
 
-        return redirect(route('companies.index'));
+        return redirect()->back()->with('success','Company updated successfully');
     }
 
     /**

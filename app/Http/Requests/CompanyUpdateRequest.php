@@ -17,11 +17,11 @@ class CompanyUpdateRequest extends FormRequest
     {
         $companyId = $this->route('company');
         return [
-            'name' => 'required|max:255|string',
+            'name' => 'required|max:255|string|min:3',
             'email' => ['required','email','max:255',Rule::unique('companies')->ignore($companyId)],
             'logo' => 'nullable|image',
-            'country' => 'required|string|max:125',
-            'city' => 'required|string|max:125',
+            'country' => 'required|string|max:125|exists:countries,name',
+            'city' => 'required|string|max:125|exists:cities,name',
             'address' => 'required|string'
         ];
     }
