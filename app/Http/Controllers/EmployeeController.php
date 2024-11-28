@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeStoreRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
 use App\Models\Company;
 use App\Models\Department;
 use App\Models\Designation;
@@ -40,7 +41,6 @@ class EmployeeController extends Controller
     {
         //get validated data
         $validated = $request->validated();
-        // dd($validated);
 
         // handle image upload
         if($request->has('profile')){
@@ -67,15 +67,32 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employees.edit',[
+            'employee' => $employee,
+            'companies' => Company::orderBy('name')->get(['id','name']),
+            'designations' => Designation::orderBy('name')->get(),
+            'departmants' => Department::orderBy('name')->get(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeUpdateRequest $request, Employee $employee)
     {
-        //
+         //get validated data
+         $validated = $request->validated();
+
+        // handle image upload
+         if($request->has('profile')){
+            $image = $request->file('profile')->store('employees-profile');
+            $validated['profile'] = $image;
+         }
+       
+        // create new company
+        $employee->update($validated);
+
+        return redirect()->back()->with('success','Employee updated successfully');
     }
 
     /**
