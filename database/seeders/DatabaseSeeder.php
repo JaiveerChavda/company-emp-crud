@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Country;
+use App\Models\Department;
+use App\Models\Designation;
+use App\Models\Employee;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,7 +26,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        Company::factory(50)->create();
+        Department::create(['name' => 'web']);
+        Department::create(['name' => 'mobile']);
+
+        Designation::create(['name' => 'developer']);
+        Designation::create(['name' => 'designer']);
+
+
+        Company::factory(5)->create()->each(function ($company) {
+            Employee::factory(5)->create(['company_id' => $company->id]);
+        });
 
         Country::factory(50)->create();
 
