@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AiapplicationController;
@@ -197,8 +198,11 @@ Route::prefix('cryptocurrency')->group(function () {
 
 
 Route::group(['middleware' => 'auth'],function (){
-    Route::resource('companies',CompanyController::class);
     Route::post('logout',[AuthenticationController::class,'destroy']);
+
+    Route::resource('companies',CompanyController::class);
+
+    Route::resource('employees',EmployeeController::class);
 });
 
 // session store
