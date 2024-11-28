@@ -57,7 +57,7 @@
                                             </a>
                                         </div>    
                                         <div>
-                                            <form id="deleteForm"  action="{{ route('companies.destroy',['company' => $company]) }}" method="post">
+                                            <form id="deleteForm" onsubmit="confirm('Are you sure you want to delete?')" action="{{ route('companies.destroy',['company' => $company]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn rounded-pill btn-danger-600 radius-8 px-20 py-11">Delete</button>
